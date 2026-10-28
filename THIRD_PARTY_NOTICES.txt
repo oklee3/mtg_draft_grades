@@ -1,0 +1,19 @@
+
+Ponder - Third-Party Software Notices
+
+Qt 6
+Copyright (C) The Qt Company Ltd. and other contributors.
+
+Ponder uses Qt 6 under the GNU Lesser General Public
+License version 3 (LGPLv3).
+
+Qt website: https://www.qt.io/
+Qt source code: https://download.qt.io/
+
+The Qt libraries are dynamically linked and distributed
+separately from the Ponder application.
+
+The LGPLv3 license is included in the LICENSES directory.
+
+Additional third-party components and their licenses
+are documented separately.
