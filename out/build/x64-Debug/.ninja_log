@@ -1,20 +1,9 @@
 # ninja log v7
-9	95	8149231472112606	Ponder_autogen/timestamp	280b4ed4aed4d5d2
-9	95	8149231472112606	Ponder_autogen/mocs_compilation.cpp	280b4ed4aed4d5d2
-9	95	8149231472112606	C:/Users/olive/repos/mtg_draft_grades/out/build/x64-Debug/Ponder_autogen/timestamp	280b4ed4aed4d5d2
-9	95	8149231472112606	C:/Users/olive/repos/mtg_draft_grades/out/build/x64-Debug/Ponder_autogen/mocs_compilation.cpp	280b4ed4aed4d5d2
-98	141	8149231472457871	CMakeFiles/Ponder.dir/Ponder_autogen/mocs_compilation.cpp.obj	f02a919c1ca39f6f
-21	113	8149310554196992	Ponder_autogen/timestamp	280b4ed4aed4d5d2
-21	113	8149310554196992	Ponder_autogen/mocs_compilation.cpp	280b4ed4aed4d5d2
-21	113	8149310554196992	C:/Users/olive/repos/mtg_draft_grades/out/build/x64-Debug/Ponder_autogen/timestamp	280b4ed4aed4d5d2
-21	113	8149310554196992	C:/Users/olive/repos/mtg_draft_grades/out/build/x64-Debug/Ponder_autogen/mocs_compilation.cpp	280b4ed4aed4d5d2
-123	314	8149310555223834	CMakeFiles/Ponder.dir/src/mainwindow.cpp.obj	aa515a2cf11f3f73
-115	314	8149310555139164	CMakeFiles/Ponder.dir/Ponder_autogen/mocs_compilation.cpp.obj	7e6b8000d771c1a
-119	641	8149310555183813	CMakeFiles/Ponder.dir/src/main.cpp.obj	e707a6261aec49e8
-642	876	8149310560402045	Ponder.exe	84c6901272d8ee63
 12	102	8149312504181524	Ponder_autogen/timestamp	280b4ed4aed4d5d2
 12	102	8149312504181524	Ponder_autogen/mocs_compilation.cpp	280b4ed4aed4d5d2
 12	102	8149312504181524	C:/Users/olive/repos/mtg_draft_grades/out/build/x64-Debug/Ponder_autogen/timestamp	280b4ed4aed4d5d2
 12	102	8149312504181524	C:/Users/olive/repos/mtg_draft_grades/out/build/x64-Debug/Ponder_autogen/mocs_compilation.cpp	280b4ed4aed4d5d2
+115	314	8149310555139164	CMakeFiles/Ponder.dir/Ponder_autogen/mocs_compilation.cpp.obj	7e6b8000d771c1a
+123	314	8149310555223834	CMakeFiles/Ponder.dir/src/mainwindow.cpp.obj	aa515a2cf11f3f73
 103	1356	8149312505086702	CMakeFiles/Ponder.dir/src/main.cpp.obj	e707a6261aec49e8
 1358	1485	8149312517637622	Ponder.exe	84c6901272d8ee63

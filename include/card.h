@@ -12,21 +12,21 @@ enum class rarity {
 
 enum class grade {
 	F,
-	Dminus,
+	D_minus,
 	D,
-	Dplus,
-	Cminus,
+	D_plus,
+	C_minus,
 	C,
-	Cplus,
-	Bminus,
+	C_plus,
+	B_minus,
 	B,
-	Bplus,
-	Aminus,
+	B_plus,
+	A_minus,
 	A,
-	Aplus,
-	Sminus,
+	A_plus,
+	S_minus,
 	S,
-	Splus
+	S_plus
 };
 
 enum class type {

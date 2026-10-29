@@ -3,7 +3,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-#include "Card.h"
+#include "card.h"
 
 int main(int argc, char* argv[])
 {
