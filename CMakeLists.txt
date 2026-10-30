@@ -27,6 +27,8 @@ set(SOURCES
     src/db/database.cpp
     src/db/cardrepository.cpp
     src/services/cardservices.cpp
+    src/parsing/cardparser.cpp
+    src/importing/cardimporter.cpp
 )
 
 qt_add_executable(Ponder

@@ -15,8 +15,7 @@ CMakeUserPresets.json
 /out/
 
 # Scryfall bulk data
-/data/*.json
-/data/*.zip
+/data
 
 # SQLite databases
 *.db

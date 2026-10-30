@@ -42,9 +42,8 @@ bool Database::initialize() {
             type_line TEXT,
             oracle_text TEXT,
             colors TEXT,
-            color_identity TEXT,
             image_url TEXT,
-            artist TEXT,
+            card_faces TEXT,
 
             FOREIGN KEY (set_code) REFERENCES sets(code)
         );

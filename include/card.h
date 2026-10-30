@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include <optional>
 
 enum class rarity {
@@ -60,7 +61,7 @@ using color_flags = unsigned int;
 
 struct Card {
 	// inherent attributes
-	std::string oracleId;
+	std::string oracle_id;
 	std::string name;
 	std::string mana_cost;
 	int cmc;
@@ -70,6 +71,7 @@ struct Card {
 	std::string oracle_text;
 	std::optional<int> power;
 	std::optional<int> toughness;
+	std::string set_code;
 
 	// user created attributes
 	grade grade;
