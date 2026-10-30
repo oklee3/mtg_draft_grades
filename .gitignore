@@ -11,6 +11,17 @@ CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
 .vs/
+/build/
+/out/
+
+# Scryfall bulk data
+/data/*.json
+/data/*.zip
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
 
 # CLion
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

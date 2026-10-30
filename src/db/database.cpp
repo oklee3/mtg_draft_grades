@@ -20,7 +20,7 @@ Database::~Database()
 	}
 }
 
-bool initialize() {
+bool Database::initialize() {
 	// pointer to c-style string sql commands
     const char* sql = R"(
         CREATE TABLE IF NOT EXISTS sets (
