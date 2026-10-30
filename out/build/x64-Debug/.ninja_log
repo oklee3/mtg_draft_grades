@@ -1,9 +1,0 @@
-# ninja log v7
-12	102	8149312504181524	Ponder_autogen/timestamp	280b4ed4aed4d5d2
-12	102	8149312504181524	Ponder_autogen/mocs_compilation.cpp	280b4ed4aed4d5d2
-12	102	8149312504181524	C:/Users/olive/repos/mtg_draft_grades/out/build/x64-Debug/Ponder_autogen/timestamp	280b4ed4aed4d5d2
-12	102	8149312504181524	C:/Users/olive/repos/mtg_draft_grades/out/build/x64-Debug/Ponder_autogen/mocs_compilation.cpp	280b4ed4aed4d5d2
-115	314	8149310555139164	CMakeFiles/Ponder.dir/Ponder_autogen/mocs_compilation.cpp.obj	7e6b8000d771c1a
-123	314	8149310555223834	CMakeFiles/Ponder.dir/src/mainwindow.cpp.obj	aa515a2cf11f3f73
-103	1356	8149312505086702	CMakeFiles/Ponder.dir/src/main.cpp.obj	e707a6261aec49e8
-1358	1485	8149312517637622	Ponder.exe	84c6901272d8ee63
