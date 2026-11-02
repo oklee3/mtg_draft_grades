@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     QWidget window;
     window.setWindowTitle("Ponder - Card Test");
     window.resize(400, 300);
-
+ 
     // Create layout
     QVBoxLayout* layout = new QVBoxLayout(&window);
 

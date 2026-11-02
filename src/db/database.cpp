@@ -21,8 +21,9 @@ Database::~Database()
 }
 
 bool Database::initialize() {
-	// pointer to c-style string sql commands
     const char* sql = R"(
+        PRAGMA foreign_keys = ON;
+
         CREATE TABLE IF NOT EXISTS sets (
             code TEXT PRIMARY KEY,
             name TEXT NOT NULL,
@@ -35,17 +36,29 @@ bool Database::initialize() {
             oracle_id TEXT,
             name TEXT NOT NULL,
             set_code TEXT NOT NULL,
-            collector_number TEXT,
+            collector_number INTEGER,
             rarity TEXT,
             mana_cost TEXT,
             cmc REAL,
-            type_line TEXT,
+            types TEXT,
+            subtypes TEXT,
+            power INTEGER,
+            toughness INTEGER,
             oracle_text TEXT,
             colors TEXT,
             image_url TEXT,
             card_faces TEXT,
 
             FOREIGN KEY (set_code) REFERENCES sets(code)
+        );
+
+        CREATE TABLE IF NOT EXISTS user_cards (
+            card_id TEXT PRIMARY KEY,
+            notes TEXT,
+            grade TEXT,
+
+            FOREIGN KEY (card_id) REFERENCES cards(id)
+                ON DELETE CASCADE
         );
 
         CREATE INDEX IF NOT EXISTS idx_cards_set_code

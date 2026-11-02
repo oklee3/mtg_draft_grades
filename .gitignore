@@ -13,14 +13,7 @@ CMakeUserPresets.json
 .vs/
 /build/
 /out/
-
-# Scryfall bulk data
-/data
-
-# SQLite databases
-*.db
-*.sqlite
-*.sqlite3
+/data/
 
 # CLion
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

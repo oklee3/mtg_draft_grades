@@ -43,12 +43,25 @@ enum class type {
 	Sorcery
 };
 
+struct cardFace {
+    std::string name;
+    std::string mana_cost;
+    std::vector<type> types;
+    std::vector<std::string> subtypes;
+    std::string oracle_text;
+
+    std::optional<int> power;
+    std::optional<int> toughness;
+
+    std::string image_url;
+};
+
 /*
 use bits to represent colors since we can have multiple
 when reading from json, combine values using | (bitwise OR)
 getCardColors in cardutils.h using & to check for presence of each color
 */
-enum class Color {
+enum class color {
 	White = 1,  // 00001
 	Blue = 2,  // 00010
 	Black = 4,  // 00100
@@ -61,17 +74,22 @@ using color_flags = unsigned int;
 
 struct Card {
 	// inherent attributes
-	std::string oracle_id;
+	std::string id;
+    std::string oracle_id;
+    std::string set_code;
+    int collector_number;
+    rarity rarity;
 	std::string name;
 	std::string mana_cost;
 	int cmc;
 	color_flags colors = 0;
 	std::vector<type> types;
-	std::vector<std::string> subtype;
+	std::vector<std::string> subtypes;
 	std::string oracle_text;
 	std::optional<int> power;
 	std::optional<int> toughness;
-	std::string set_code;
+    std::string image_url;
+    std::vector<cardFace> card_faces;
 
 	// user created attributes
 	grade grade;

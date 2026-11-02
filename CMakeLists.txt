@@ -27,7 +27,7 @@ set(SOURCES
     src/db/database.cpp
     src/db/cardrepository.cpp
     src/services/cardservices.cpp
-    src/parsing/cardparser.cpp
+    src/importing/cardparser.cpp
     src/importing/cardimporter.cpp
 )
 

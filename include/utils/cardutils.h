@@ -6,16 +6,16 @@
 /*
 * 
 */
-inline std::vector<Color> getCardColors(unsigned int colors)
+inline std::vector<color> getCardColors(unsigned int colors)
 {
-    std::vector<Color> result;
+    std::vector<color> result;
 
-    for (Color color : {
-        Color::White,
-        Color::Blue,
-        Color::Black,
-        Color::Red,
-        Color::Green
+    for (color color : {
+        color::White,
+        color::Blue,
+        color::Black,
+        color::Red,
+        color::Green
     })
     {
         if (colors & static_cast<unsigned int>(color))

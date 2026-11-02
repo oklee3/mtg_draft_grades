@@ -7,7 +7,6 @@
 #include <vector>
 
 // implements database operations with cards
-// requires cards to be imported and read into card objects
 class CardRepository {
 public:
 	explicit CardRepository(Database& db);
@@ -19,7 +18,6 @@ public:
 	// add more when needed
 
 private:
-	// ref to a db
-	// cardrepositories use existing database connections
+	// cardrepositories refer to existing database connections
 	Database& db;
 };
