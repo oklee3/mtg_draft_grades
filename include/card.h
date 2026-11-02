@@ -5,12 +5,22 @@
 #include <optional>
 
 enum class rarity {
-	Common,
-	Uncommon,
-	Rare,
-	Mythic
+	common,
+	uncommon,
+	rare,
+	mythic
 };
 
+// so we can convert to c-style string for sqlite
+inline std::string rarityToString(rarity r) {
+    switch (r) {
+        case rarity::common: return "common";
+        case rarity::uncommon: return "uncommon";
+        case rarity::rare: return "rare";
+        case rarity::mythic: return "mythic";
+    }
+    return "";
+}
 enum class grade {
 	F,
 	D_minus,
