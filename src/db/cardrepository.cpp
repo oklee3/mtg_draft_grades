@@ -52,9 +52,8 @@ bool CardRepository::insertCard(const Card& card) {
             oracle_text,
             colors,
             image_url,
-            card_faces
        )
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     )";
 
     sqlite3_stmt* stmt = nullptr;
@@ -77,8 +76,23 @@ bool CardRepository::insertCard(const Card& card) {
     sqlite3_bind_text(stmt, 6, card.mana_cost.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_int(stmt, 7, card.cmc);
     
-    // handle type vector
-    // handle subtype vector
+    std::string typeLine;
+    for (const auto& type : card.types) {
+        if (!typeLine.empty()) {
+            typeLine += " ";
+        }
+        typeLine += type;
+    }
+    sqlite3_bind_text(stmt, 8, typeLine.c_str(), -1, SQLITE_TRANSIENT);
+    
+    std::string subtypeLine;
+    for (const auto& subtype: card.subtypes) {
+        if (!subtypeLine.empty()) {
+            subtypeLine += " ";
+        }
+        subtypeLine += subtype;
+    }
+    sqlite3_bind_text(stmt, 8, subtypeLine.c_str(), -1, SQLITE_TRANSIENT);
 
     if (card.power.has_value()) {
         sqlite3_bind_int(stmt, 10, card.power.value());
@@ -95,8 +109,8 @@ bool CardRepository::insertCard(const Card& card) {
     sqlite3_bind_int(stmt, 13, card.colors);
     sqlite3_bind_text(stmt, 14, card.image_url.c_str(), -1, SQLITE_TRANSIENT);
     
+    // Implement cardFaces eventually, maybe with another table
     
-
     bool exists = sqlite3_step(stmt);
     sqlite3_finalize(stmt);
     return exists;

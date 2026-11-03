@@ -40,23 +40,10 @@ enum class grade {
 	S_plus
 };
 
-enum class type {
-	Legendary,
-	Artifact,
-	Battle,
-	Creature,
-	Kindred,
-	Enchantment,
-	Land,
-	Planeswalker,
-	Instant,
-	Sorcery
-};
-
 struct cardFace {
     std::string name;
     std::string mana_cost;
-    std::vector<type> types;
+    std::vector<std::string> types;
     std::vector<std::string> subtypes;
     std::string oracle_text;
 
@@ -93,7 +80,7 @@ struct Card {
 	std::string mana_cost;
 	int cmc;
 	color_flags colors = 0;
-	std::vector<type> types;
+	std::vector<std::string> types;
 	std::vector<std::string> subtypes;
 	std::string oracle_text;
 	std::optional<int> power;
