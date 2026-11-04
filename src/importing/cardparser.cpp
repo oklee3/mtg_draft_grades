@@ -24,6 +24,9 @@ Card CardParser::parseCard(const nlohmann::json& json) {
     auto [types, subtypes] = parseTypeLine(json.at("type_line").get<std::string>());
     card.types = std::move(types);
     card.subtypes = std::move(subtypes);
+
+    card.oracle_text = json.at("oracle_text").get<std::string>();
+    
 }
 
 //

@@ -92,15 +92,14 @@ bool CardRepository::insertCard(const Card& card) {
     sqlite3_bind_text(stmt, 8, subtypeLine.c_str(), -1, SQLITE_TRANSIENT);
 
     if (card.power.has_value()) {
-        sqlite3_bind_int(stmt, 10, card.power.value());
+        sqlite3_bind_text(stmt, 10, card.power.value().c_str(), -1, SQLITE_TRANSIENT);
     } else {
         sqlite3_bind_null(stmt, 10);
     }
     if (card.toughness.has_value()) {
-        sqlite3_bind_int(stmt, 11, card.toughness.value());
+        sqlite3_bind_text(stmt, 11, card.toughness.value().c_str(), -1, SQLITE_TRANSIENT);
     } else {
         sqlite3_bind_null(stmt, 11);
-    }
 
     sqlite3_bind_text(stmt, 12, card.oracle_text.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_int(stmt, 13, card.colors);
