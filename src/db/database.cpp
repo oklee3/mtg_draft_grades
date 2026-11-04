@@ -45,7 +45,7 @@ bool Database::initialize() {
             power INTEGER,
             toughness INTEGER,
             oracle_text TEXT,
-            colors TEXT,
+            colors INTEGER,
             image_url TEXT,
             
             FOREIGN KEY (set_code) REFERENCES sets(code)

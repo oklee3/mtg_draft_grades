@@ -12,7 +12,7 @@ enum class rarity {
 };
 
 // so we can convert to c-style string for sqlite
-inline std::string rarityToString(rarity r) {
+inline static std::string rarityToString(rarity r) {
     switch (r) {
         case rarity::common: return "common";
         case rarity::uncommon: return "uncommon";
