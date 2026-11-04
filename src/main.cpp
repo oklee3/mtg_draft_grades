@@ -2,10 +2,11 @@
 #include <QWidget>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <nlohmann/json.hpp>
 
 #include "card.h"
+#include "cardparser.h"
 
-int main(int argc, char* argv[])
-{
-    return 0;
+int main() {
+    pass;   
 }

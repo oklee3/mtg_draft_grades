@@ -74,11 +74,11 @@ struct Card {
 	std::string id;
     std::string oracle_id;
     std::string set_code;
-    int collector_number;
+    std::string collector_number;
     rarity rarity;
 	std::string name;
 	std::string mana_cost;
-	int cmc;
+	double cmc;
 	color_flags colors = 0;
 	std::vector<std::string> types;
 	std::vector<std::string> subtypes;

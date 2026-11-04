@@ -68,7 +68,7 @@ bool CardRepository::insertCard(const Card& card) {
     sqlite3_bind_text(stmt, 1, card.id.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 2, card.oracle_id.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 3, card.set_code.c_str(), -1, SQLITE_TRANSIENT);
-    sqlite3_bind_int(stmt, 4, card.collector_number);
+    sqlite3_bind_text(stmt, 4, card.collector_number.c_str(), -1, SQLITE_TRANSIENT);
     
     std::string rarityStr = rarityToString(card.rarity);
     sqlite3_bind_text(stmt, 5, rarityStr.c_str(), -1, SQLITE_TRANSIENT);

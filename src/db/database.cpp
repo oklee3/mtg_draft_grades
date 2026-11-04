@@ -36,7 +36,7 @@ bool Database::initialize() {
             oracle_id TEXT,
             name TEXT NOT NULL,
             set_code TEXT NOT NULL,
-            collector_number INTEGER,
+            collector_number TEXT,
             rarity TEXT,
             mana_cost TEXT,
             cmc REAL,
