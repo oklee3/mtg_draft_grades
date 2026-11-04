@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(Ponder VERSION 1.0.0 LANGUAGES CXX)
+project(Ponder VERSION 1.0.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -31,8 +31,18 @@ set(SOURCES
     src/importing/cardimporter.cpp
 )
 
+include(FetchContent)
+
+FetchContent_Declare(
+    json
+    URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz
+)
+
+FetchContent_MakeAvailable(json)
+
 qt_add_executable(Ponder
     ${SOURCES}
+
 )
 
 target_include_directories(Ponder PRIVATE
@@ -42,6 +52,7 @@ target_include_directories(Ponder PRIVATE
 target_link_libraries(Ponder PRIVATE
     Qt6::Widgets
     sqlite3
+    nlohmann_json::nlohmann_json
 )
 
 set_target_properties(Ponder PROPERTIES

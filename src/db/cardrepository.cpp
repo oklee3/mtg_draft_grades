@@ -99,8 +99,8 @@ bool CardRepository::insertCard(const Card& card) {
     } else {
         sqlite3_bind_null(stmt, 10);
     }
-    if (card.tougness.has_value()) {
-        sqlite3_bind_int(stmt, 11, card.power.value());
+    if (card.toughness.has_value()) {
+        sqlite3_bind_int(stmt, 11, card.toughness.value());
     } else {
         sqlite3_bind_null(stmt, 11);
     }
