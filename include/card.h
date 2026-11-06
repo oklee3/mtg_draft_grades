@@ -83,8 +83,8 @@ struct Card {
 	std::vector<std::string> types;
 	std::vector<std::string> subtypes;
 	std::string oracle_text;
-	std::optional<int> power;
-	std::optional<int> toughness;
+	std::optional<std::string> power;
+	std::optional<std::string> toughness;
     std::string image_url;
     std::vector<cardFace> card_faces;
 

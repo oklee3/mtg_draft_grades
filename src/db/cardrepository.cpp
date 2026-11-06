@@ -30,9 +30,10 @@ bool CardRepository::cardExists(const std::string& id) {
         return false;
     }
 
-    bool exists = sqlite3_step(stmt);
+    int res = sqlite3_step(stmt);
+    
     sqlite3_finalize(stmt);
-    return exists;
+    return res == SQLITE_ROW;
 }
 
 bool CardRepository::insertCard(const Card& card) {
@@ -51,7 +52,7 @@ bool CardRepository::insertCard(const Card& card) {
             toughness,
             oracle_text,
             colors,
-            image_url,
+            image_url
        )
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     )";
@@ -69,7 +70,7 @@ bool CardRepository::insertCard(const Card& card) {
     sqlite3_bind_text(stmt, 2, card.oracle_id.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 3, card.set_code.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 4, card.collector_number.c_str(), -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(stmt, 5, Card::rarityToString(card.rarity).c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 5, rarityToString(card.rarity).c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 6, card.mana_cost.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_int(stmt, 7, card.cmc);
     
@@ -89,7 +90,7 @@ bool CardRepository::insertCard(const Card& card) {
         }
         subtypeLine += subtype;
     }
-    sqlite3_bind_text(stmt, 8, subtypeLine.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 9, subtypeLine.c_str(), -1, SQLITE_TRANSIENT);
 
     if (card.power.has_value()) {
         sqlite3_bind_text(stmt, 10, card.power.value().c_str(), -1, SQLITE_TRANSIENT);
@@ -100,6 +101,7 @@ bool CardRepository::insertCard(const Card& card) {
         sqlite3_bind_text(stmt, 11, card.toughness.value().c_str(), -1, SQLITE_TRANSIENT);
     } else {
         sqlite3_bind_null(stmt, 11);
+    }
 
     sqlite3_bind_text(stmt, 12, card.oracle_text.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_int(stmt, 13, card.colors);
@@ -107,9 +109,10 @@ bool CardRepository::insertCard(const Card& card) {
     
     // Implement cardFaces eventually, maybe with another table
     
-    bool exists = sqlite3_step(stmt);
+    int res = sqlite3_step(stmt);
     sqlite3_finalize(stmt);
-    return exists;
+
+    return res == SQLITE_DONE;
 }
 
 /*

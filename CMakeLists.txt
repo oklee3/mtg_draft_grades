@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(Ponder VERSION 1.0.0 LANGUAGES C CXX
+project(Ponder VERSION 1.0.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -42,7 +42,6 @@ FetchContent_MakeAvailable(json)
 
 qt_add_executable(Ponder
     ${SOURCES}
-
 )
 
 target_include_directories(Ponder PRIVATE

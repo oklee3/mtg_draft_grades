@@ -26,18 +26,29 @@ Card CardParser::parseCard(const nlohmann::json& json) {
     card.subtypes = std::move(subtypes);
 
     card.oracle_text = json.at("oracle_text").get<std::string>();
-    
+
+    if (json.contains("power")) {
+        card.power = json.at("power").get<std::string>();
+    }
+    if (json.contains("toughness")) {
+        card.toughness = json.at("toughness").get<std::string>();
+    }
+
+    // using small image url
+    card.image_url = json.at("image_uris").at("small").get<std::string>();
+
+    return card;
 }
 
 //
 // helper functions for parsing
 // 
 
-Rarity CardParser::parseRarity(const std::string& r) {
-    if (r == "common") return Rarity::common;
-    if (r == "uncommon") return Rarity::uncommon;
-    if (r == "rare") return Rarity::rare;
-    if (r == "mythic") return Rarity::mythic;
+rarity CardParser::parseRarity(const std::string& r) {
+    if (r == "common") return rarity::common;
+    if (r == "uncommon") return rarity::uncommon;
+    if (r == "rare") return rarity::rare;
+    if (r == "mythic") return rarity::mythic;
 
     throw std::invalid_argument("Unknown rarity: " + r);
 }
@@ -45,19 +56,19 @@ Rarity CardParser::parseRarity(const std::string& r) {
 color_flags CardParser::parseColor(const nlohmann::json& colors) {
     color_flags res{};
 
-    if (colors.empty()) {return res;}
+    if (colors.empty()) return res;
 
-    for (const auto& color : colors) {
-        std::string c = color.get<std::string>();
+    for (const auto& colorValue : colors) {
+        std::string c = colorValue.get<std::string>();
 
-        if (c == "W") result |= WHITE;
-        else if (c == "U") result |= BLUE;
-        else if (c == "B") result |= BLACK;
-        else if (c == "R") result |= RED;
-        else if (c == "G") result |= GREEN;
+        if (c == "W") res |= static_cast<color_flags>(color::White);
+        else if (c == "U") res |= static_cast<color_flags>(color::Blue);
+        else if (c == "B") res |= static_cast<color_flags>(color::Black);
+        else if (c == "R") res |= static_cast<color_flags>(color::Red);
+        else if (c == "G") res |= static_cast<color_flags>(color::Green);
     }
 
-    return result;
+    return res;
 }
 
 // returns the types, subtypes pair
@@ -84,6 +95,6 @@ CardParser::parseTypeLine(const std::string& typeLine) {
     }
 
     return {types, subtypes};
-{
+}
 
 
