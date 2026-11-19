@@ -6,8 +6,10 @@
 #include "db/cardrepository.h"
 #include "importing/cardparser.h"
 
-int main() {
+int main()
+{
     std::cout << "Ponder is running!" << std::endl;
+
     // 1. Create the JSON input
     nlohmann::json thaliaJson = nlohmann::json::parse(R"(
     {
@@ -62,18 +64,22 @@ int main() {
 
     if (setResult != SQLITE_OK) {
         std::cerr << "Set insertion failed: "
-                  << errorMessage << '\n';
+            << (errorMessage ? errorMessage : "Unknown error")
+            << '\n';
 
         sqlite3_free(errorMessage);
         return 1;
     }
+
+    std::cout << "Set inserted or already exists.\n";
 
     // 5. Insert the card
     bool inserted = repository.insertCard(card);
 
     if (inserted) {
         std::cout << "Card inserted successfully.\n";
-    } else {
+    }
+    else {
         std::cout << "Card insertion failed.\n";
     }
 
@@ -81,7 +87,10 @@ int main() {
     bool exists = repository.cardExists(card.id);
 
     std::cout << "Card exists: "
-              << (exists ? "YES" : "NO") << '\n';
+        << (exists ? "YES" : "NO") << '\n';
+
+    std::cout << "\nDatabase test completed.\n";
 
     return 0;
 }
+

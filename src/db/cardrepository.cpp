@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 CardRepository::CardRepository(Database& db)
 	: db(db) {}
@@ -44,6 +45,7 @@ bool CardRepository::insertCard(const Card& card) {
             set_code,
             collector_number,
             rarity,
+            name,
             mana_cost,
             cmc,
             types,
@@ -54,7 +56,7 @@ bool CardRepository::insertCard(const Card& card) {
             colors,
             image_url
        )
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     )";
 
     sqlite3_stmt* stmt = nullptr;
@@ -62,6 +64,9 @@ bool CardRepository::insertCard(const Card& card) {
     if (sqlite3_prepare_v2(
         db.getConnection(), sql, -1, &stmt, nullptr
     ) != SQLITE_OK) {
+        std::cerr << "Prepare failed: "
+            << sqlite3_errmsg(db.getConnection())
+            << std::endl;
         return false;
     }
 
@@ -71,8 +76,9 @@ bool CardRepository::insertCard(const Card& card) {
     sqlite3_bind_text(stmt, 3, card.set_code.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 4, card.collector_number.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 5, rarityToString(card.rarity).c_str(), -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(stmt, 6, card.mana_cost.c_str(), -1, SQLITE_TRANSIENT);
-    sqlite3_bind_int(stmt, 7, card.cmc);
+    sqlite3_bind_text(stmt, 6, card.name.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 7, card.mana_cost.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(stmt, 8, card.cmc);
     
     std::string typeLine;
     for (const auto& type : card.types) {
@@ -81,7 +87,7 @@ bool CardRepository::insertCard(const Card& card) {
         }
         typeLine += type;
     }
-    sqlite3_bind_text(stmt, 8, typeLine.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 9, typeLine.c_str(), -1, SQLITE_TRANSIENT);
     
     std::string subtypeLine;
     for (const auto& subtype: card.subtypes) {
@@ -90,26 +96,32 @@ bool CardRepository::insertCard(const Card& card) {
         }
         subtypeLine += subtype;
     }
-    sqlite3_bind_text(stmt, 9, subtypeLine.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 10, subtypeLine.c_str(), -1, SQLITE_TRANSIENT);
 
     if (card.power.has_value()) {
-        sqlite3_bind_text(stmt, 10, card.power.value().c_str(), -1, SQLITE_TRANSIENT);
-    } else {
-        sqlite3_bind_null(stmt, 10);
-    }
-    if (card.toughness.has_value()) {
-        sqlite3_bind_text(stmt, 11, card.toughness.value().c_str(), -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 11, card.power.value().c_str(), -1, SQLITE_TRANSIENT);
     } else {
         sqlite3_bind_null(stmt, 11);
     }
+    if (card.toughness.has_value()) {
+        sqlite3_bind_text(stmt, 12, card.toughness.value().c_str(), -1, SQLITE_TRANSIENT);
+    } else {
+        sqlite3_bind_null(stmt, 12);
+    }
 
-    sqlite3_bind_text(stmt, 12, card.oracle_text.c_str(), -1, SQLITE_TRANSIENT);
-    sqlite3_bind_int(stmt, 13, card.colors);
-    sqlite3_bind_text(stmt, 14, card.image_url.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 13, card.oracle_text.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(stmt, 14, card.colors);
+    sqlite3_bind_text(stmt, 15, card.image_url.c_str(), -1, SQLITE_TRANSIENT);
     
     // Implement cardFaces eventually, maybe with another table
     
     int res = sqlite3_step(stmt);
+    if (res != SQLITE_DONE) {
+        std::cerr << "Insert failed: "
+            << sqlite3_errmsg(db.getConnection())
+            << std::endl;
+    }
+
     sqlite3_finalize(stmt);
 
     return res == SQLITE_DONE;

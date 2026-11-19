@@ -55,6 +55,6 @@ target_link_libraries(Ponder PRIVATE
 )
 
 set_target_properties(Ponder PROPERTIES
-    WIN32_EXECUTABLE ON
+    WIN32_EXECUTABLE OFF
     MACOSX_BUNDLE ON
 )
